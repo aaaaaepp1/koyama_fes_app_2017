@@ -16,12 +16,12 @@
 
 をしてください。  
 
-branch名は、*スクリプト/モデル名*にしてください。
+branch名は、*クラス名*にしてください。
 
     $ git branch [branch名]
 
->     《例》$ git branch MainObjectMenuManager
->     《例》$ git branch model_ball
+>     《例》$ git branch AnswerManager
+>     《例》$ git branch NetworkControlManager
 
 作成したブランチに移動  
 
@@ -44,12 +44,12 @@ branch名は、*スクリプト/モデル名*にしてください。
 > とすることで次回から省略可能。（ブランチごとに必要）
 
 
-ブラウザ上の [escapeVR_3Gのページ](https://github.com/shihoooox/escapeVR_3G "escapeVR_3G")で
+ブラウザ上の [GitHubのページ](https://github.com/aaaaaepp1/koyama_fes_app_2017)で
 `Compare & pull request`を押す。  
 移動先のページで、
 
     ーーーーーーーーーーーーーーーーーーー
-    タイトル : [スクリプト名]の制作
+    タイトル : [クラス名]の制作
     コメント : 
     - [ ] メソッド名（モデルの場合必要無し）
     - [ ] メソッド名
@@ -60,12 +60,11 @@ branch名は、*スクリプト/モデル名*にしてください。
 
 >     《例》 
 >     ーーーーーーーーーーーーーーーーーーー
->     タイトル : MainObjectMenuManagerの制作
+>     タイトル : AnswerManagerの制作
 >     コメント : 
->     - [ ] Start
->     - [ ] Update
->     - [ ] setObject
->     - [ ] unsetObject
+>     - [ ] コンストラクタ
+>     - [ ] setCsvData
+>     - [ ] getAnswerData
 >     ーーーーーーーーーーーーーーーーーーー 
 
 を入力し、`Create pull request`を押す。  
@@ -95,9 +94,9 @@ branch名は、*スクリプト/モデル名*にしてください。
 > を行うと、最新の状態に更新できます。  
 
 
-全ての作業を終えたら、LINEグループでその旨を伝える。  
-岡本さんがプログラム/モデルをチェックして、合格したら岡本さんがmergeする。  
-リテイクが出た場合、岡本さんがpull requestのチェックを外すので、訂正作業を行ってください。  
+全ての作業を終えたら、Slackでその旨を伝える。  
+岡本がプログラム/モデルをチェックして、合格したら岡本がmergeする。  
+リテイクが出た場合、岡本がpull requestのチェックを外すので、訂正作業を行ってください。  
 完成したらチェックを入れ、再びLINEで報告してください。  
 
 次の作業を始める時は上に戻る。
