@@ -46,7 +46,7 @@ public class Answer {
 
 
     public Calendar getSt() {
-        if(TRACE) System.out.println("getHn : 開発中");
+        if(TRACE) System.out.println("getSt : 開発中");
 
 
         return null;
@@ -54,7 +54,7 @@ public class Answer {
 
 
     public Calendar getRt() {
-        if(TRACE) System.out.println("getHn : 開発中");
+        if(TRACE) System.out.println("getRt : 開発中");
 
 
         return null;
@@ -62,7 +62,7 @@ public class Answer {
 
 
     public Integer getSn() {
-        if(TRACE) System.out.println("getHn : 開発中");
+        if(TRACE) System.out.println("getSn : 開発中");
 
 
         return null;
