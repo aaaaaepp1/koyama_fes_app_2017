@@ -7,6 +7,13 @@ public class Answer {
     private final boolean DEBUG = false;
     private final boolean TRACE = true;
 
+    private String hn;
+    private Integer qn;
+    private String ans;
+    private Calendar st;
+    private Calendar rt;
+    private Integer sn;
+
     public Answer() {
         if(TRACE) System.out.println("Answer : 開発中");
 
