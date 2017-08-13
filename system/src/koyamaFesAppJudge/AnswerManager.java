@@ -7,6 +7,9 @@ public class AnswerManager {
     private final boolean DEBUG = false;
     private final boolean TRACE = true;
 
+    ArrayList<String[]> rawCsvData;
+    ArrayList<Answer> answerData;
+
     public AnswerManager(ArrayList<String[]> csvData) {
         if(TRACE) System.out.println("AnswerManager : 開発中");
 
