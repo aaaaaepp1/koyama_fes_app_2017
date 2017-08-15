@@ -25,7 +25,7 @@ public class Answer {
         if(TRACE) System.out.println("getHn : 開発中");
 
 
-        return null;
+        return this.hn;
     }
 
 
@@ -33,7 +33,7 @@ public class Answer {
         if(TRACE) System.out.println("getQn : 開発中");
 
 
-        return null;
+        return this.qn;
     }
 
 
@@ -41,7 +41,7 @@ public class Answer {
         if(TRACE) System.out.println("getAns : 開発中");
 
 
-        return null;
+        return this.ans;
     }
 
 
@@ -49,7 +49,7 @@ public class Answer {
         if(TRACE) System.out.println("getSt : 開発中");
 
 
-        return null;
+        return this.st;
     }
 
 
@@ -57,7 +57,7 @@ public class Answer {
         if(TRACE) System.out.println("getRt : 開発中");
 
 
-        return null;
+        return this.rt;
     }
 
 
@@ -65,6 +65,6 @@ public class Answer {
         if(TRACE) System.out.println("getSn : 開発中");
 
 
-        return null;
+        return this.sn;
     }
 }
