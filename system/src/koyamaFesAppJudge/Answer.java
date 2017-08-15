@@ -14,10 +14,17 @@ public class Answer {
     private Calendar rt;
     private Integer sn;
 
-    public Answer() {
+    public Answer(String hn, Integer qn, String ans, Long stUt, Long rtUt, Integer num) {
         if(TRACE) System.out.println("Answer : 開発中");
 
-
+        this.hn = hn;
+        this.qn = qn;
+        this.ans = ans;
+        st = Calendar.getInstance();
+        st.setTimeInMillis(stUt);
+        rt = Calendar.getInstance();
+        rt.setTimeInMillis(rtUt);
+        sn = num;
     }
 
 
