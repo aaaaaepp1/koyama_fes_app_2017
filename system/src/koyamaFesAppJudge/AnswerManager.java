@@ -1,7 +1,6 @@
 package koyamaFesAppJudge;
 
 import java.util.ArrayList;
-import java.util.stream.Collectors;
 
 public class AnswerManager {
 
@@ -39,7 +38,7 @@ public class AnswerManager {
                                .filter(s -> s[1].equals("QN"))
                                .map(s -> new Answer(s[0], new Integer(s[1]), s[2], new Long(s[3]), new Long(s[4]), new Integer(s[5])))
                                .collect(Collectors.toList());
-                               */
+        */
         this.sortAnswerData();
         return answerData;
     }
@@ -48,7 +47,7 @@ public class AnswerManager {
     private void sortAnswerData(){
         if(TRACE) System.out.println("sortAnswerData : 開発中");
 
-
+        //answerData.sort(Comparator.comparing(Answer::getSt)); クイックじゃないしこんなコンパレータでちゃんと動くかわかんないので殴り書きしておく
     }
 
 }
