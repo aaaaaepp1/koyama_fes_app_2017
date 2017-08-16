@@ -1,15 +1,14 @@
 package koyamaFesAppJudge;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class AnswerManager {
 
     private final boolean DEBUG = false;
     private final boolean TRACE = true;
 
-    private List<String[]> rawCsvData = new ArrayList<>();
-    private List<Answer> answerData = new ArrayList<>();
+    private ArrayList<String[]> rawCsvData;
+    private ArrayList<Answer> answerData;
 
     public AnswerManager(ArrayList<String[]> csvData) {
         if(TRACE) System.out.println("AnswerManager : 開発中");
@@ -28,7 +27,7 @@ public class AnswerManager {
         if(TRACE) System.out.println("getAnswerData : 開発中");
 
 
-        return null;
+        return answerData;
     }
 
 }
