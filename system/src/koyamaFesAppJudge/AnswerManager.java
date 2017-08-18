@@ -30,6 +30,7 @@ public class AnswerManager {
         answerData = new ArrayList<>();
         for(int i = 1;i < rawCsvData.size();i++) {
             String[] oneData = rawCsvData.get(i);
+            //マージされたらエラー消えるはずだけど消えなかったらゴメン
             Answer oneAnswer = new Answer(oneData[0], new Integer(oneData[1]), oneData[2], new Long(oneData[3]), new Long(oneData[4]), new Integer(oneData[5]));
             answerData.add(oneAnswer);
         }
