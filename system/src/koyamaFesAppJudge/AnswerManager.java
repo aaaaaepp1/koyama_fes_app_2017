@@ -44,6 +44,7 @@ public class AnswerManager {
     }
 
 
+    //分けた意味ある？
     private void sortAnswerData(){
         if(TRACE) System.out.println("sortAnswerData : 開発中");
 
@@ -58,6 +59,9 @@ public class AnswerManager {
      * @return ソートされたリスト
      */
     private ArrayList<Answer> quickSort(ArrayList<Answer> list){
+        if(TRACE) System.out.println("quickSort : 開発中");
+
+
         if(list.size() < 2) return list;
 
         ArrayList<Answer> smaller = new ArrayList<>();
