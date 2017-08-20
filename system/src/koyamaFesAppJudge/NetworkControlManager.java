@@ -14,12 +14,14 @@ public class NetworkControlManager {
     private final boolean TRACE = true;
 
     private HttpURLConnection urlConnection;
+    private String uri;
 
     //コンストラクタ
     public NetworkControlManager(String uri) throws IOException{
         if(TRACE) System.out.println("NetworkControlManager : 開発中");
 
-        this.setUri(uri);
+        this.uri = uri;
+        //返り値無視してたのでここで呼んでたsetUriけしました
     }
 
 
@@ -44,15 +46,14 @@ public class NetworkControlManager {
     public AnswerManager getAnswer() throws IOException{
         if(TRACE) System.out.println("getAnswer : 開発中");
 
+        if(!this.setUri(uri)) return null; //確立出来ていない時のnull
+
         ArrayList<String[]> list = new ArrayList<>();
         AnswerManager answerManager = new AnswerManager(list);
-        try {
-            BufferedReader in = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
-            //list = in.lines().map(s -> s.split(",")).collect(Collectors.toList()); ArrayListだから書けない
-            in.lines().map(s -> s.split(",")).forEach(list::add);
-        } catch(FileNotFoundException e) {
-            e.printStackTrace();
-        }
+
+        BufferedReader in = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
+        //list = in.lines().map(s -> s.split(",")).collect(Collectors.toList()); ArrayListだから書けない
+        in.lines().map(s -> s.split(",")).forEach(list::add);
 
         //AnswerManagerのインスタンスのanswerDataを更新できてないけどきっとこれを使う人が.getAnswerData()(=ソート)してくれるだろう
         return answerManager;
