@@ -49,13 +49,12 @@ public class NetworkControlManager {
         if(!this.setUri(uri)) return null; //確立出来ていない時のnull
 
         ArrayList<String[]> list = new ArrayList<>();
-        AnswerManager answerManager = new AnswerManager(list);
 
         BufferedReader in = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
         //list = in.lines().map(s -> s.split(",")).collect(Collectors.toList()); ArrayListだから書けない
         in.lines().map(s -> s.split(",")).forEach(list::add);
 
         //AnswerManagerのインスタンスのanswerDataを更新できてないけどきっとこれを使う人が.getAnswerData()(=ソート)してくれるだろう
-        return answerManager;
+        return new AnswerManager(list);
     }
 }
