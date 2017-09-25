@@ -7,10 +7,24 @@ public class Answer {
     private final boolean DEBUG = false;
     private final boolean TRACE = true;
 
-    public Answer() {
+    private String hn;
+    private Integer qn;
+    private String ans;
+    private Calendar st;
+    private Calendar rt;
+    private Integer sn;
+
+    public Answer(String hn, Integer qn, String ans, Long stUt, Long rtUt, Integer num) {
         if(TRACE) System.out.println("Answer : 開発中");
 
-
+        this.hn = hn;
+        this.qn = qn;
+        this.ans = ans;
+        st = Calendar.getInstance();
+        st.setTimeInMillis(stUt);
+        rt = Calendar.getInstance();
+        rt.setTimeInMillis(rtUt);
+        sn = num;
     }
 
 
@@ -18,7 +32,7 @@ public class Answer {
         if(TRACE) System.out.println("getHn : 開発中");
 
 
-        return null;
+        return this.hn;
     }
 
 
@@ -26,7 +40,7 @@ public class Answer {
         if(TRACE) System.out.println("getQn : 開発中");
 
 
-        return null;
+        return this.qn;
     }
 
 
@@ -34,30 +48,30 @@ public class Answer {
         if(TRACE) System.out.println("getAns : 開発中");
 
 
-        return null;
+        return this.ans;
     }
 
 
     public Calendar getSt() {
-        if(TRACE) System.out.println("getHn : 開発中");
+        if(TRACE) System.out.println("getSt : 開発中");
 
 
-        return null;
+        return this.st;
     }
 
 
     public Calendar getRt() {
-        if(TRACE) System.out.println("getHn : 開発中");
+        if(TRACE) System.out.println("getRt : 開発中");
 
 
-        return null;
+        return this.rt;
     }
 
 
     public Integer getSn() {
-        if(TRACE) System.out.println("getHn : 開発中");
+        if(TRACE) System.out.println("getSn : 開発中");
 
 
-        return null;
+        return this.sn;
     }
 }
