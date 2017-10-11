@@ -12,7 +12,9 @@ public class Main extends Application {
 
     private final boolean DEBUG = false;
     private final boolean TRACE = true;
-
+    
+    
+    private Label subWindowLabel;
 
     @Override
     public void start(Stage mainStage) throws Exception{
@@ -21,14 +23,19 @@ public class Main extends Application {
         
         koyama_fes_app_2017_nb.Controller controller = (koyama_fes_app_2017_nb.Controller) loader.getController();
         controller.setThisStage(mainStage);
-
+        
+        controller.setMainInstance(this);
+        
         mainStage.setTitle("メインウィンドウ");
         mainStage.setScene(new Scene(root, 800, 800));
         mainStage.show();
+        
+        subWindowLabel = new Label();
+        subWindowLabel.setText("this is sub window");
     }
 
     // サブウィンドウであるsubStageのインスタンスを生成し、レイアウトを整えてリターンするメソッド。
-    static Stage createSubStage() {
+    public Stage createSubStage() {
         //if(TRACE) System.out.println("createSubStage : 開発中");
 
         //Stage subStage = Main.createSubStage(); 
@@ -37,16 +44,18 @@ public class Main extends Application {
 
 
         //ここはとりあえず記述する処理。
-        Label tmpLabel = new Label();
-        tmpLabel.setText("this is sub window");
         BorderPane tmpPane = new BorderPane();
-        tmpPane.setCenter(tmpLabel);
+        tmpPane.setCenter(subWindowLabel);
         //ここまでとりあえず記述する処理。
 
 
         stage.setScene(new Scene(tmpPane, 800, 600));
 
         return stage;
+    }
+    
+    public void changeSubwindowLabel(String str) {
+        this.subWindowLabel.setText(str);
     }
 
 

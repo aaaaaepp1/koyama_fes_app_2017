@@ -23,9 +23,11 @@ import javafx.scene.paint.Material;
 import javafx.stage.Stage;
 
 public class Controller implements Initializable{
-    ObservableList<String> questionNumbers = FXCollections.observableArrayList( "第1問", "第2問" ,"第3問" ,"第4問");
-    Stage thisStage;
-    Integer keepNumber = 0;
+    private ObservableList<String> questionNumbers = FXCollections.observableArrayList( "第1問", "第2問" ,"第3問" ,"第4問");
+    private Stage thisStage;
+    private Integer keepNumber = 0;
+    
+    private Main main;
 
     @FXML
     private TableView<Data> table;
@@ -53,6 +55,10 @@ public class Controller implements Initializable{
         table.getItems().add(new Data("anum", "name", "qnum", "aExam"));
         questionComboBox.getItems().addAll(questionNumbers);
     }
+    
+    public void setMainInstance(Main main) {
+        this.main = main;
+    }
 
 
     @FXML//データ更新
@@ -60,11 +66,17 @@ public class Controller implements Initializable{
         String[] argsStrings = "sample.csv".split(" ");
         System.out.println(Arrays.toString(argsStrings));
         FileRead(argsStrings);
+        
+        //=====================================
+        //for debug 2017.10.11 okamoto naoki
+        this.main.changeSubwindowLabel("aaaaaaaa");
+        //=====================================
+        
     }
 
     @FXML//サブウィンドウ生成
     private void OpenSubWindow(ActionEvent event) {
-        Stage subStage = Main.createSubStage();
+        Stage subStage = this.main.createSubStage();
         subStage.initOwner(thisStage);
         subStage.show();
     }
