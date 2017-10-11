@@ -18,7 +18,7 @@ public class Main extends Application {
     public void start(Stage mainStage) throws Exception{
         FXMLLoader loader = new FXMLLoader(getClass().getResource("MainWindow.fxml"));
         Parent root = loader.load();
-
+        
         koyama_fes_app_2017_nb.Controller controller = (koyama_fes_app_2017_nb.Controller) loader.getController();
         controller.setThisStage(mainStage);
 
@@ -31,7 +31,7 @@ public class Main extends Application {
     static Stage createSubStage() {
         //if(TRACE) System.out.println("createSubStage : 開発中");
 
-
+        //Stage subStage = Main.createSubStage(); 
         Stage stage = new Stage();
         stage.setTitle("サブウィンドウ");
 

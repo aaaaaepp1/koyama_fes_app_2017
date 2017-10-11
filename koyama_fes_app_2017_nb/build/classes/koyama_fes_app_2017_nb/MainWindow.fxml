@@ -8,7 +8,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="613.0" prefWidth="804.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+<AnchorPane id="AnchorPane" prefHeight="613.0" prefWidth="804.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="koyama_fes_app_2017_nb.Controller">
     <children>
         <Button layoutX="139.0" layoutY="44.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="116.0" text="回答表示" />
         <Button layoutX="14.0" layoutY="44.0" mnemonicParsing="false" onAction="#Update" prefHeight="34.0" prefWidth="116.0" text="回答更新" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="44.0">

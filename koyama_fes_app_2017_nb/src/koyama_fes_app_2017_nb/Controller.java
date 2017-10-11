@@ -19,6 +19,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.paint.Material;
 import javafx.stage.Stage;
 
 public class Controller implements Initializable{
@@ -26,6 +27,7 @@ public class Controller implements Initializable{
     Stage thisStage;
     Integer keepNumber = 0;
 
+    @FXML
     private TableView<Data> table;
     @FXML
     private TableColumn<Object, Object> aNumColumn;
@@ -39,23 +41,25 @@ public class Controller implements Initializable{
     private TextArea textArea;
     @FXML
     private ComboBox questionComboBox;
-
-
+    
+    //private final ObservableList<Data> TableDate = FXCollections.observableArrayList(new Data("anum", "name", "qnum", "aExam"));
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         this.Startnow();
-        //table.getItems().add(new Data("anum", "name", "qnum", "aExam"));
+        //table.setItems(TableDate);
+        //table.getColumns().addAll(aNumColumn,nameColumn,qNumColumn,aExamColumn);
+        //table.getItems().add(aNumColumn,nameColumn,qNumColumn,aExamColumn);
+        table.getItems().add(new Data("anum", "name", "qnum", "aExam"));
         questionComboBox.getItems().addAll(questionNumbers);
     }
 
 
     @FXML//データ更新
     private void Update(ActionEvent event) throws IOException{
-        for(Integer i = 0; i < 5;i++) {
-            String[] argsStrings = "sample.csv".split(" ");
-            FileRead(argsStrings);
-            System.out.println(i);
-        }
+        String[] argsStrings = "sample.csv".split(" ");
+        System.out.println(Arrays.toString(argsStrings));
+        FileRead(argsStrings);
     }
 
     @FXML//サブウィンドウ生成
@@ -84,15 +88,23 @@ public class Controller implements Initializable{
 
     private void FileRead(String[] args) throws IOException {
         File file = new File(args[0]);
+        System.out.println(file);
         try (BufferedReader br = new BufferedReader(new FileReader(file))) {
             String line;
             while ((line = br.readLine()) != null) {
                 String[] lines = line.split(",");
+                System.out.println(Arrays.toString(lines));
                 if(keepNumber < Integer.valueOf(lines[0])){
+                    System.out.println(lines[0]);
+                    System.out.println(lines[1]);
+                    System.out.println(lines[2]);
+                    System.out.println(lines[3]);
                     table.getItems().add(new Data(lines[0],lines[1],lines[2],lines[3]));
                     keepNumber = Integer.valueOf(lines[0]);
                 }
             }
+        }catch(IOException e){
+        
         }
     }
 
