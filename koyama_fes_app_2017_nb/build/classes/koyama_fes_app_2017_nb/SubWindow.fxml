@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="koyama_fes_app_2017_nb.Controller">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="koyama_fes_app_2017_nb.SubController">
    <children>
       <Label fx:id="questionLabel" layoutX="5.0" layoutY="50.0" prefHeight="71.0" prefWidth="588.0" text="Label">
          <font>

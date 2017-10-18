@@ -1,10 +1,12 @@
 package koyama_fes_app_2017_nb;
 
+import java.io.IOException;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
@@ -35,7 +37,7 @@ public class Main extends Application {
     }
 
     // サブウィンドウであるsubStageのインスタンスを生成し、レイアウトを整えてリターンするメソッド。
-    public Stage createSubStage() {
+    public Stage createSubStage() throws IOException {
         //if(TRACE) System.out.println("createSubStage : 開発中");
 
         //Stage subStage = Main.createSubStage(); 
@@ -44,13 +46,18 @@ public class Main extends Application {
 
 
         //ここはとりあえず記述する処理。
-        BorderPane tmpPane = new BorderPane();
-        tmpPane.setCenter(subWindowLabel);
+        //BorderPane tmpPane = new BorderPane();
+        //tmpPane.setCenter(subWindowLabel);
         //ここまでとりあえず記述する処理。
-
-
-        stage.setScene(new Scene(tmpPane, 800, 600));
-
+        
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("sample.fxml"));
+        Parent root = loader.load();
+      
+        koyama_fes_app_2017_nb.SubController subcontroller = (koyama_fes_app_2017_nb.SubController) loader.getController();
+        subcontroller.setThisStage(stage);
+        
+        subcontroller.setSubInstance(this);
+        
         return stage;
     }
     

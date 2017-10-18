@@ -11,6 +11,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import java.io.*;
 import java.util.concurrent.TimeUnit;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -28,6 +30,8 @@ public class Controller implements Initializable{
     private Integer keepNumber = 0;
     
     private Main main;
+    private NetworkControlManager networkControlManager;
+    private AnswerManager answerManager;
 
     @FXML
     private TableView<Data> table;
@@ -49,6 +53,11 @@ public class Controller implements Initializable{
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         this.Startnow();
+        try {
+            this.networkControlManager = new NetworkControlManager("http://ksu-cac.sakura.ne.jp/kouyama_ogiri_2017/output.csv");
+        } catch (IOException ex) {
+            Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
+        }
         //table.setItems(TableDate);
         //table.getColumns().addAll(aNumColumn,nameColumn,qNumColumn,aExamColumn);
         //table.getItems().add(aNumColumn,nameColumn,qNumColumn,aExamColumn);
@@ -63,9 +72,10 @@ public class Controller implements Initializable{
 
     @FXML//データ更新
     private void Update(ActionEvent event) throws IOException{
-        String[] argsStrings = "sample.csv".split(" ");
-        System.out.println(Arrays.toString(argsStrings));
-        FileRead(argsStrings);
+        this.answerManager = networkControlManager.getAnswer();
+        ArrayList<Answer> answerDatas;
+        answerDatas = answerManager.getAnswerData();
+        DataUser(answerDatas);
         
         //=====================================
         //for debug 2017.10.11 okamoto naoki
@@ -75,7 +85,7 @@ public class Controller implements Initializable{
     }
 
     @FXML//サブウィンドウ生成
-    private void OpenSubWindow(ActionEvent event) {
+    private void OpenSubWindow(ActionEvent event) throws IOException {
         Stage subStage = this.main.createSubStage();
         subStage.initOwner(thisStage);
         subStage.show();
@@ -98,26 +108,13 @@ public class Controller implements Initializable{
         aExamColumn.setCellValueFactory(new PropertyValueFactory<>("answerExample"));
     }
 
-    private void FileRead(String[] args) throws IOException {
-        File file = new File(args[0]);
-        System.out.println(file);
-        try (BufferedReader br = new BufferedReader(new FileReader(file))) {
-            String line;
-            while ((line = br.readLine()) != null) {
-                String[] lines = line.split(",");
-                System.out.println(Arrays.toString(lines));
-                if(keepNumber < Integer.valueOf(lines[0])){
-                    System.out.println(lines[0]);
-                    System.out.println(lines[1]);
-                    System.out.println(lines[2]);
-                    System.out.println(lines[3]);
-                    table.getItems().add(new Data(lines[0],lines[1],lines[2],lines[3]));
-                    keepNumber = Integer.valueOf(lines[0]);
+    private void DataUser(ArrayList<Answer> answerDateList) throws IOException {
+            for (Answer oneAnswerData:answerDateList) {
+                if(keepNumber <= oneAnswerData.getSn()){
+                    table.getItems().add(new Data(oneAnswerData.getSn().toString(),oneAnswerData.getHn(),oneAnswerData.getQn().toString(),oneAnswerData.getAns()));
+                    keepNumber = Integer.valueOf(oneAnswerData.getSn());
                 }
             }
-        }catch(IOException e){
-        
-        }
     }
 
     private void WaitTask() {
