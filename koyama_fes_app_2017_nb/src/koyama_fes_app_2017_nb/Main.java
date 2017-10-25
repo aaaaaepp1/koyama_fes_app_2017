@@ -3,11 +3,15 @@ package koyama_fes_app_2017_nb;
 import java.io.IOException;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Insets;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.GridPane;
+import javafx.scene.text.Font;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 public class Main extends Application {
@@ -17,6 +21,8 @@ public class Main extends Application {
     
     
     private Label subWindowLabel;
+    private Label questionLabel;
+    private Label answerLabel;
 
     @Override
     public void start(Stage mainStage) throws Exception{
@@ -34,6 +40,12 @@ public class Main extends Application {
         
         subWindowLabel = new Label();
         subWindowLabel.setText("this is sub window");
+        
+        questionLabel = new Label();
+        questionLabel.setText("This Label is questionLabel");
+        
+        answerLabel = new Label();
+        answerLabel.setText("This Label is answerLabel");
     }
 
     // サブウィンドウであるsubStageのインスタンスを生成し、レイアウトを整えてリターンするメソッド。
@@ -43,26 +55,53 @@ public class Main extends Application {
         //Stage subStage = Main.createSubStage(); 
         Stage stage = new Stage();
         stage.setTitle("サブウィンドウ");
+        Text borderNode1 = new Text("問題") ;
+        Text boText2 = new Text("解答");
 
 
         //ここはとりあえず記述する処理。
-        //BorderPane tmpPane = new BorderPane();
-        //tmpPane.setCenter(subWindowLabel);
+        AnchorPane tmpPane = new AnchorPane();
+        
+        
+        GridPane layoutPane = new GridPane();
+        layoutPane.setPadding(new Insets(10,10,10,10));
+        
+        Scene scene = new Scene(tmpPane, 1600,900);
+        stage.setScene(scene);
+        
+        borderNode1.setLayoutX(150);
+        borderNode1.setLayoutY(120);
+        borderNode1.setFont(Font.font("MS明朝",30));
+        
+        boText2.setLayoutX(150);
+        boText2.setLayoutY(520);
+        boText2.setFont(Font.font("MS明朝",30));
+        
+        questionLabel.setLayoutX(150);
+        questionLabel.setLayoutY(130);
+        questionLabel.setFont(Font.font("MS明朝",50));
+        
+        answerLabel.setLayoutX(150);
+        answerLabel.setLayoutY(530);
+        answerLabel.setFont(Font.font("MS明朝",50));
+        
+        tmpPane.getChildren().addAll(questionLabel,answerLabel,borderNode1,boText2);
+        //layoutPane.add(subWindowLabel, 100, 100);
+        
         //ここまでとりあえず記述する処理。
-        
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("sample.fxml"));
-        Parent root = loader.load();
-      
-        koyama_fes_app_2017_nb.SubController subcontroller = (koyama_fes_app_2017_nb.SubController) loader.getController();
-        subcontroller.setThisStage(stage);
-        
-        subcontroller.setSubInstance(this);
-        
         return stage;
     }
     
     public void changeSubwindowLabel(String str) {
         this.subWindowLabel.setText(str);
+    }
+    
+    public void changeQuestionLabel(String str) {
+        this.questionLabel.setText(str);
+    }
+    
+    public void changeAnswerLabel(String str){
+        this.answerLabel.setText(str);
     }
 
 

@@ -96,6 +96,21 @@ public class Controller implements Initializable{
     void SelectComboBox(){
         String value = (String) questionComboBox.getValue();
         System.out.println(value);
+        if("第1問".equals(value)){
+            this.main.changeQuestionLabel("ついに実現！一度はやってみたかった贅沢とは？");
+        }else if("第2問".equals(value)){
+            this.main.changeQuestionLabel("2100年オリンピック、まさかの新種目は？");
+        }else if("第3問".equals(value)){
+            this.main.changeQuestionLabel("あまり嬉しくない1年分のプレゼント、その中身は？");
+        }else{
+            this.main.changeQuestionLabel("ひょっとして自分に超能力があるかも、その能力とは？");
+        }
+    }
+    
+    @FXML
+    void SelectAnswer(ActionEvent event){
+        
+        
     }
 
     public void setThisStage(Stage stage){
