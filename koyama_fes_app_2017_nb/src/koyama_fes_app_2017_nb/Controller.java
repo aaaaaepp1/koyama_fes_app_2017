@@ -88,7 +88,7 @@ public class Controller implements Initializable{
     @FXML//サブウィンドウ生成
     private void OpenSubWindow(ActionEvent event) throws IOException {
         Stage subStage = this.main.createSubStage();
-        subStage.initOwner(thisStage);
+        //subStage.initOwner(thisStage);
         subStage.show();
     }
 
