@@ -20,6 +20,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.paint.Material;
 import javafx.stage.Stage;
@@ -32,6 +33,7 @@ public class Controller implements Initializable{
     private Main main;
     private NetworkControlManager networkControlManager;
     private AnswerManager answerManager;
+    private ArrayList<Answer> answerDatekeepList;
 
     @FXML
     private TableView<Data> table;
@@ -45,6 +47,8 @@ public class Controller implements Initializable{
     private TableColumn aExamColumn;
     @FXML
     private TextArea textArea;
+    @FXML
+    private TextField numberField;
     @FXML
     private ComboBox questionComboBox;
     
@@ -77,6 +81,7 @@ public class Controller implements Initializable{
         ArrayList<Answer> answerDatas;
         answerDatas = answerManager.getAnswerData();
         DataUser(answerDatas);
+        this.answerDatekeepList = answerDatas;
         
         //=====================================
         //for debug 2017.10.11 okamoto naoki
@@ -109,8 +114,13 @@ public class Controller implements Initializable{
     
     @FXML
     void SelectAnswer(ActionEvent event){
-        
-        
+        Integer selectInteger = Integer.valueOf(this.numberField.getText());
+        System.out.println(selectInteger);
+        for(Answer oneAnswerData:answerDatekeepList) {
+            if(selectInteger.equals(oneAnswerData.getSn())){
+                main.changeAnswerLabel(oneAnswerData.getAns());        
+            }
+        }
     }
 
     public void setThisStage(Stage stage){
