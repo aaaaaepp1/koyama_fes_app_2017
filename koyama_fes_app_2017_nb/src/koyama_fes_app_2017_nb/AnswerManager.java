@@ -71,14 +71,14 @@ public class AnswerManager {
 
 
         //軸の設定　else使いたくなかった・・・
-        Long key;
-        if(list.get(0).getSt().getTimeInMillis() > list.get(1).getSt().getTimeInMillis()) key = list.get(0).getSt().getTimeInMillis();
-        else key = list.get(1).getSt().getTimeInMillis();
+        Integer key;
+        if(list.get(0).getSn() > list.get(1).getSn()) key = list.get(0).getSn();
+        else key = list.get(1).getSn();
 
 
         //軸よりデカいかで振り分けます アルゴリの教科書では要素をスワップしてたけどコレクション大量生成しちゃうクソプログラムなのでこれでもよいかと
         for(Answer ans : list) {
-            if(ans.getSt().getTimeInMillis() >= key) bigger.add(ans);
+            if(ans.getSn() >= key) bigger.add(ans);
             else smaller.add(ans);
         }
 
