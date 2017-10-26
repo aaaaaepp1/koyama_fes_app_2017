@@ -136,7 +136,7 @@ public class Controller implements Initializable{
 
     private void DataUser(ArrayList<Answer> answerDateList) throws IOException {
             for (Answer oneAnswerData:answerDateList) {
-                if(keepNumber < oneAnswerData.getSn()){
+                if(keepNumber <= oneAnswerData.getSn()){
                     table.getItems().add(new Data(oneAnswerData.getSn().toString(),oneAnswerData.getHn(),oneAnswerData.getQn().toString(),oneAnswerData.getAns()));
                     keepNumber = Integer.valueOf(oneAnswerData.getSn());
                 }
