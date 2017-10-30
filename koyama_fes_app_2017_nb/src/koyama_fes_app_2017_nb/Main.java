@@ -73,11 +73,13 @@ public class Main extends Application {
         GridPane layoutPane = new GridPane();
         layoutPane.setPadding(new Insets(10,10,10,10));
         
-        //2017.10.30更新
+        /*画像出力に使用したコード
         //scene.getStylesheets().add(this.getClass().getResource("SubWindowCss.css").toExternalForm());
-        Image image = new Image(new File( "background.png" ).toURI().toString());
-        ImageView imageView = new ImageView(image);
-        System.out.println(new File(".").getAbsoluteFile().getParent());
+        //Image image = new Image(new File( "background.png" ).toURI().toString());
+        //ImageView imageView = new ImageView(image);
+        //System.out.println(new File(".").getAbsoluteFile().getParent());
+        //tmpPane.getChildren().add(imageView);
+        */
         
         borderNode1.setLayoutX(150);
         borderNode1.setLayoutY(120);
@@ -95,7 +97,7 @@ public class Main extends Application {
         answerLabel.setLayoutY(530);
         answerLabel.setFont(Font.font("MS明朝",50));
         
-        tmpPane.getChildren().addAll(questionLabel,answerLabel,borderNode1,boText2,imageView);
+        tmpPane.getChildren().addAll(questionLabel,answerLabel,borderNode1,boText2);
         //layoutPane.add(subWindowLabel, 100, 100);
         
         Scene scene = new Scene(tmpPane, 1600,900);
