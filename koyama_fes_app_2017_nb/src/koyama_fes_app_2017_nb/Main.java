@@ -1,6 +1,6 @@
 package koyama_fes_app_2017_nb;
 
-import java.awt.Image;
+import java.io.File;
 import java.io.IOException;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -8,6 +8,7 @@ import javafx.geometry.Insets;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
@@ -48,6 +49,8 @@ public class Main extends Application {
         
         answerLabel = new Label();
         answerLabel.setText("This Label is answerLabel");
+        
+        
     }
 
     // サブウィンドウであるsubStageのインスタンスを生成し、レイアウトを整えてリターンするメソッド。
@@ -69,8 +72,11 @@ public class Main extends Application {
         GridPane layoutPane = new GridPane();
         layoutPane.setPadding(new Insets(10,10,10,10));
         
-        Scene scene = new Scene(tmpPane, 1600,900);
-        stage.setScene(scene);
+        //2017.10.30更新
+        //scene.getStylesheets().add(this.getClass().getResource("SubWindowCss.css").toExternalForm());
+        Image image = new Image(new File( "background.png" ).toURI().toString());
+        ImageView imageView = new ImageView(image);
+        System.out.println(new File(".").getAbsoluteFile().getParent());
         
         borderNode1.setLayoutX(150);
         borderNode1.setLayoutY(120);
@@ -88,8 +94,12 @@ public class Main extends Application {
         answerLabel.setLayoutY(530);
         answerLabel.setFont(Font.font("MS明朝",50));
         
-        tmpPane.getChildren().addAll(questionLabel,answerLabel,borderNode1,boText2);
+        tmpPane.getChildren().addAll(questionLabel,answerLabel,borderNode1,boText2,imageView);
         //layoutPane.add(subWindowLabel, 100, 100);
+        
+        Scene scene = new Scene(tmpPane, 1600,900);
+        stage.setScene(scene);
+        
         
         //ここまでとりあえず記述する処理。
         return stage;
