@@ -45,12 +45,13 @@ public class Main extends Application {
         subWindowLabel.setText("this is sub window");
         
         questionLabel = new Label();
-        questionLabel.setText("This Label is questionLabel");
+        questionLabel.setText("--");
         
         answerLabel = new Label();
+
         answerLabel.setText("This Label is answerLabel");
-        
-        
+        answerLabel.setText("--");
+
     }
 
     // サブウィンドウであるsubStageのインスタンスを生成し、レイアウトを整えてリターンするメソッド。
