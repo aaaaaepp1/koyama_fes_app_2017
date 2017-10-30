@@ -17,6 +17,13 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+/*
+背景を挿入する
+フォントを変えれるようにする
+文字の位置を揃える
+手打ちで入力できるようにする
+*/
+
 public class Main extends Application {
 
     private final boolean DEBUG = false;
@@ -26,6 +33,7 @@ public class Main extends Application {
     private Label subWindowLabel;
     private Label questionLabel;
     private Label answerLabel;
+    private Text borderNode1; 
 
     @Override
     public void start(Stage mainStage) throws Exception{
@@ -38,7 +46,7 @@ public class Main extends Application {
         controller.setMainInstance(this);
         
         mainStage.setTitle("メインウィンドウ");
-        mainStage.setScene(new Scene(root, 800, 800));
+        mainStage.setScene(new Scene(root, 1200, 600));
         mainStage.show();
         
         subWindowLabel = new Label();
@@ -61,8 +69,8 @@ public class Main extends Application {
         //Stage subStage = Main.createSubStage(); 
         Stage stage = new Stage();
         stage.setTitle("サブウィンドウ");
-        Text borderNode1 = new Text("問題") ;
-        Text boText2 = new Text("解答");
+        borderNode1 = new Text("問題") ;
+//        Text boText2 = new Text("解答");
 
         
 
@@ -82,25 +90,32 @@ public class Main extends Application {
         */
         
         borderNode1.setLayoutX(150);
-        borderNode1.setLayoutY(120);
-        borderNode1.setFont(Font.font("MS明朝",30));
+        borderNode1.setLayoutY(250);
+        borderNode1.setFont(Font.font("Hiragino Mincho ProN",30));
         
-        boText2.setLayoutX(150);
-        boText2.setLayoutY(520);
-        boText2.setFont(Font.font("MS明朝",30));
+//        boText2.setLayoutX(150);
+//        boText2.setLayoutY(520);
+//        boText2.setFont(Font.font("MS明朝",30));
         
         questionLabel.setLayoutX(150);
-        questionLabel.setLayoutY(130);
-        questionLabel.setFont(Font.font("MS明朝",50));
+        questionLabel.setLayoutY(300);
+        questionLabel.setFont(Font.font("Hiragino Mincho ProN",50));
         
         answerLabel.setLayoutX(150);
         answerLabel.setLayoutY(530);
-        answerLabel.setFont(Font.font("MS明朝",50));
+        answerLabel.setFont(Font.font("Hiragino Mincho ProN",50));
         
-        tmpPane.getChildren().addAll(questionLabel,answerLabel,borderNode1,boText2);
+        tmpPane.getChildren().addAll(questionLabel,answerLabel,borderNode1);
         //layoutPane.add(subWindowLabel, 100, 100);
         
         Scene scene = new Scene(tmpPane, 1600,900);
+        
+        File backgroundImg = new File("background.png");
+        tmpPane.setStyle("" +
+            "-fx-background-image: url('" + backgroundImg.toURI().toString() + "'); " +
+            "-fx-background-position: left top; " +
+            "-fx-background-repeat: stretch;");
+        
         stage.setScene(scene);
         
         
@@ -118,6 +133,18 @@ public class Main extends Application {
     
     public void changeAnswerLabel(String str){
         this.answerLabel.setText(str);
+    }
+    
+    public void changeQuestionTitleLabel(String str) {
+        this.borderNode1.setText(str);
+    }
+    
+    //font chooser 作る
+    public void setFont(String str) {
+        
+        borderNode1.setFont(Font.font(str, 30));
+        questionLabel.setFont(Font.font(str, 50));
+        answerLabel.setFont(Font.font(str, 50));
     }
 
 

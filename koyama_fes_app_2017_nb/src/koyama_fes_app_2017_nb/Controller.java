@@ -23,6 +23,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.paint.Material;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 public class Controller implements Initializable{
@@ -46,11 +47,11 @@ public class Controller implements Initializable{
     @FXML
     private TableColumn aExamColumn;
     @FXML
-    private TextArea textArea;
-    @FXML
     private TextField numberField;
     @FXML
     private ComboBox questionComboBox;
+    @FXML
+    private ComboBox fontComboBox;
     
     //private final ObservableList<Data> TableDate = FXCollections.observableArrayList(new Data("anum", "name", "qnum", "aExam"));
     
@@ -66,6 +67,10 @@ public class Controller implements Initializable{
         //table.getColumns().addAll(aNumColumn,nameColumn,qNumColumn,aExamColumn);
         //table.getItems().add(aNumColumn,nameColumn,qNumColumn,aExamColumn);
         table.getItems().add(new Data("anum", "name", "qnum", "aExam"));
+        
+        
+        this.fontComboBox.getItems().addAll(Font.getFontNames());
+        
         questionComboBox.getItems().addAll(questionNumbers);
     }
     
@@ -82,11 +87,6 @@ public class Controller implements Initializable{
         answerDatas = answerManager.getAnswerData();
         DataUser(answerDatas);
         this.answerDatekeepList = answerDatas;
-        
-        //=====================================
-        //for debug 2017.10.11 okamoto naoki
-        this.main.changeSubwindowLabel("aaaaaaaa");
-        //=====================================
         
     }
 
@@ -110,17 +110,27 @@ public class Controller implements Initializable{
         }else{
             this.main.changeQuestionLabel("ひょっとして自分に超能力があるかも、その能力とは？");
         }
+        
+        this.main.changeQuestionTitleLabel(value);
+        this.main.changeAnswerLabel("--");
     }
     
     @FXML
     void SelectAnswer(ActionEvent event){
         Integer selectInteger = Integer.valueOf(this.numberField.getText());
         System.out.println(selectInteger);
+        
         for(Answer oneAnswerData:answerDatekeepList) {
             if(selectInteger.equals(oneAnswerData.getSn())){
                 main.changeAnswerLabel(oneAnswerData.getAns());        
             }
         }
+    }
+    
+    @FXML
+    void selectFont() {
+        String fontName = (String)this.fontComboBox.getValue();
+        this.main.setFont(fontName);
     }
 
     public void setThisStage(Stage stage){
