@@ -13,6 +13,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -31,10 +32,14 @@ public class Main extends Application {
     
     
     private Label subWindowLabel;
-    private Label questionLabel;
+    private Label questionLabel1;
+    private Label questionLabel2;
+    
     private Label answerLabel;
-    private Text borderNode1; 
-
+    private Text questionNumberName;
+    
+    private String currentFont = "ＤＣＰひげ文字W5";
+    
     @Override
     public void start(Stage mainStage) throws Exception{
         FXMLLoader loader = new FXMLLoader(getClass().getResource("MainWindow.fxml"));
@@ -52,8 +57,12 @@ public class Main extends Application {
         subWindowLabel = new Label();
         subWindowLabel.setText("this is sub window");
         
-        questionLabel = new Label();
-        questionLabel.setText("--");
+        questionLabel1 = new Label();
+        questionLabel1.setText("--");
+        
+        questionLabel2 = new Label();
+        questionLabel2.setText("--");
+        questionLabel2.setTextFill(Color.RED);
         
         answerLabel = new Label();
 
@@ -69,7 +78,7 @@ public class Main extends Application {
         //Stage subStage = Main.createSubStage(); 
         Stage stage = new Stage();
         stage.setTitle("サブウィンドウ");
-        borderNode1 = new Text("問題") ;
+        questionNumberName = new Text("--") ;
 //        Text boText2 = new Text("解答");
 
         
@@ -89,23 +98,9 @@ public class Main extends Application {
         //tmpPane.getChildren().add(imageView);
         */
         
-        borderNode1.setLayoutX(150);
-        borderNode1.setLayoutY(250);
-        borderNode1.setFont(Font.font("Hiragino Mincho ProN",30));
+        this.changePosQuestionMode();
         
-//        boText2.setLayoutX(150);
-//        boText2.setLayoutY(520);
-//        boText2.setFont(Font.font("MS明朝",30));
-        
-        questionLabel.setLayoutX(150);
-        questionLabel.setLayoutY(300);
-        questionLabel.setFont(Font.font("Hiragino Mincho ProN",50));
-        
-        answerLabel.setLayoutX(150);
-        answerLabel.setLayoutY(530);
-        answerLabel.setFont(Font.font("Hiragino Mincho ProN",50));
-        
-        tmpPane.getChildren().addAll(questionLabel,answerLabel,borderNode1);
+        tmpPane.getChildren().addAll(questionLabel1, questionLabel2, answerLabel, questionNumberName);
         //layoutPane.add(subWindowLabel, 100, 100);
         
         Scene scene = new Scene(tmpPane, 1600,900);
@@ -127,8 +122,9 @@ public class Main extends Application {
         this.subWindowLabel.setText(str);
     }
     
-    public void changeQuestionLabel(String str) {
-        this.questionLabel.setText(str);
+    public void changeQuestionLabel(String str1, String str2) {
+        this.questionLabel1.setText(str1);
+        this.questionLabel2.setText(str2);
     }
     
     public void changeAnswerLabel(String str){
@@ -136,15 +132,67 @@ public class Main extends Application {
     }
     
     public void changeQuestionTitleLabel(String str) {
-        this.borderNode1.setText(str);
+        this.questionNumberName.setText(str);
+    }
+    
+    public void changePosQuestionMode() {
+        if(this.questionLabel1.getText().contains("\n")) {
+            questionNumberName.setLayoutX(150);
+            questionNumberName.setLayoutY(302);
+            questionLabel1.setLayoutX(150);
+            questionLabel1.setLayoutY(400);
+            questionLabel2.setLayoutX(150);
+            questionLabel2.setLayoutY(700);
+            answerLabel.setLayoutX(150);
+            answerLabel.setLayoutY(-500);
+        } else {
+            questionNumberName.setLayoutX(150);
+            questionNumberName.setLayoutY(302);
+            questionLabel1.setLayoutX(150);
+            questionLabel1.setLayoutY(400);
+            questionLabel2.setLayoutX(150);
+            questionLabel2.setLayoutY(550);
+            answerLabel.setLayoutX(150);
+            answerLabel.setLayoutY(-500);
+        }
+        
+        questionNumberName.setFont(Font.font(currentFont,90));
+        questionLabel1.setFont(Font.font(currentFont,140));
+        questionLabel2.setFont(Font.font(currentFont,150));
+        answerLabel.setFont(Font.font(currentFont,50));
+    }
+    
+    public void changePosAnswerMode() {
+        
+        String lineOneStr = questionLabel1.getText();
+        
+        lineOneStr = lineOneStr.replaceAll(System.getProperty("line.separator"), "");
+        questionLabel1.setText(lineOneStr);
+        
+        questionNumberName.setLayoutX(150);
+        questionNumberName.setLayoutY(302);
+        questionLabel1.setLayoutX(500);
+        questionLabel1.setLayoutY(190);
+        questionLabel2.setLayoutX(500);
+        questionLabel2.setLayoutY(270);
+        answerLabel.setLayoutX(150);
+        answerLabel.setLayoutY(550);
+        
+        
+        questionNumberName.setFont(Font.font(currentFont,90));
+        questionLabel1.setFont(Font.font(currentFont,70));
+        questionLabel2.setFont(Font.font(currentFont,70));
+        answerLabel.setFont(Font.font(currentFont, answerLabel.getText().length() < 15 ? 120 : 100));//120
     }
     
     //font chooser 作る
     public void setFont(String str) {
         
-        borderNode1.setFont(Font.font(str, 30));
-        questionLabel.setFont(Font.font(str, 50));
-        answerLabel.setFont(Font.font(str, 50));
+        this.currentFont = str;
+        questionNumberName.setFont(Font.font(str, questionNumberName.getFont().getSize()));
+        questionLabel1.setFont(Font.font(str, questionLabel1.getFont().getSize()));
+        answerLabel.setFont(Font.font(str, answerLabel.getFont().getSize()));
+        
     }
 
 

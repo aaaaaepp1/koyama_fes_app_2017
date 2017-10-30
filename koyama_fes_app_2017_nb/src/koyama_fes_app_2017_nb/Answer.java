@@ -15,7 +15,6 @@ public class Answer {
     private Integer sn;
 
     public Answer(String hn, Integer qn, String ans, Long stUt, Long rtUt, Integer num) {
-        if(TRACE) System.out.println("Answer : 開発中");
 
         this.hn = hn;
         this.qn = qn;
@@ -29,7 +28,6 @@ public class Answer {
 
 
     public String getHn() {
-        if(TRACE) System.out.println("getHn : 開発中");
 
 
         return this.hn;
@@ -37,7 +35,6 @@ public class Answer {
 
 
     public Integer getQn() {
-        if(TRACE) System.out.println("getQn : 開発中");
 
 
         return this.qn;
@@ -45,7 +42,6 @@ public class Answer {
 
 
     public String getAns() {
-        if(TRACE) System.out.println("getAns : 開発中");
 
 
         return this.ans;
@@ -53,7 +49,6 @@ public class Answer {
 
 
     public Calendar getSt() {
-        if(TRACE) System.out.println("getSt : 開発中");
 
 
         return this.st;
@@ -61,7 +56,6 @@ public class Answer {
 
 
     public Calendar getRt() {
-        if(TRACE) System.out.println("getRt : 開発中");
 
 
         return this.rt;
@@ -69,7 +63,6 @@ public class Answer {
 
 
     public Integer getSn() {
-        if(TRACE) System.out.println("getSn : 開発中");
 
 
         return this.sn;

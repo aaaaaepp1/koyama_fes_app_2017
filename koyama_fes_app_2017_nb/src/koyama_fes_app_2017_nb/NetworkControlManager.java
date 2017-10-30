@@ -18,7 +18,6 @@ public class NetworkControlManager {
 
     //コンストラクタ
     public NetworkControlManager(String uri) throws IOException{
-        if(TRACE) System.out.println("NetworkControlManager : 開発中");
 
         this.uri = uri;
         //返り値無視してたのでここで呼んでたsetUriけしました
@@ -26,7 +25,6 @@ public class NetworkControlManager {
 
 
     public Boolean setUri(String uri) throws IOException{
-        if(TRACE) System.out.println("setUri : 開発中");
 
         try {
             urlConnection = (HttpURLConnection) new URL(uri).openConnection();
@@ -44,7 +42,6 @@ public class NetworkControlManager {
 
 
     public AnswerManager getAnswer() throws IOException{
-        if(TRACE) System.out.println("getAnswer : 開発中");
 
         if(!this.setUri(uri)) return null; //確立出来ていない時のnull
 

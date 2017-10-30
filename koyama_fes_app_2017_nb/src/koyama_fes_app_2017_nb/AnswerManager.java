@@ -11,21 +11,18 @@ public class AnswerManager {
     private ArrayList<Answer> answerData;
 
     public AnswerManager(ArrayList<String[]> csvData) {
-        if(TRACE) System.out.println("AnswerManager : 開発中");
 
         this.setCsvData(csvData);
     }
 
 
     public void setCsvData(ArrayList<String[]> csvData) {
-        if(TRACE) System.out.println("setCsvData : 開発中");
 
         rawCsvData = new ArrayList<>(csvData);
     }
 
 
     public ArrayList<Answer> getAnswerData() {
-        if(TRACE) System.out.println("getAnswerData : 開発中");
 
         answerData = new ArrayList<>();
         for(int i = 1;i < rawCsvData.size();i++) {
@@ -47,7 +44,6 @@ public class AnswerManager {
 
     //分けた意味ある？
     private void sortAnswerData(){
-        if(TRACE) System.out.println("sortAnswerData : 開発中");
 
         this.quickSort(answerData);
         //answerData.sort(Comparator.comparing(Answer::getSt)); クイックじゃないしこんなコンパレータでちゃんと動くかわかんないので殴り書きしておく
@@ -60,7 +56,6 @@ public class AnswerManager {
      * @return ソートされたリスト
      */
     private ArrayList<Answer> quickSort(ArrayList<Answer> list){
-        if(TRACE) System.out.println("quickSort : 開発中");
 
 
         if(list.size() < 2) return list;
